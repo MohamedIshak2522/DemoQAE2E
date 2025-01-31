@@ -13,6 +13,7 @@ import demoQA_POM.demoQA_POM_Homepage;
 public class test_HomePage extends demoQA_base{
 	demoQA_POM_Homepage home;
 
+	// Hopme page testing
 @BeforeClass
 	public void LaunchBrowserAndURL() {
 		launchBrowser("chrome");
