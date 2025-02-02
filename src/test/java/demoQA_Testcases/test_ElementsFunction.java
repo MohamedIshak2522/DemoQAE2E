@@ -36,12 +36,29 @@ public void ValidateCollapse() throws InterruptedException {
 */
 
 @Test (priority =2)
-public void ValidationForElementOptions() {
+public void ValidationForElementComponentOptions() {
 	elements = new demoQA_POM_Elements(driver);
 //Elements side navbar components validation	
 	elements.ElementsOptions();
 //Logo, body and advertisement validation	
-	elements.ElementsPageComponent();
-	
+	elements.ElementsPageComponent();	
+}
+
+@Test (priority =3)
+public void ValidationForTextBoxComponents() {
+	elements = new demoQA_POM_Elements(driver);
+	elements.TextBoxComponents("Text Box");	
+}
+
+@Test (priority =4)
+public void ValidationForTextBoxFunctionality() {
+	elements = new demoQA_POM_Elements(driver);
+	elements.FillingTextboxesAndValidate("Test Name", "testemail@test.com");
+}
+
+@Test (priority =5)
+public void ValidationForCheckBoxComponents() {
+	elements = new demoQA_POM_Elements(driver);
+	elements.CheckBoxComponents("Check Box");
 }
 }
