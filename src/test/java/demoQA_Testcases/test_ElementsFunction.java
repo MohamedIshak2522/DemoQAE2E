@@ -57,8 +57,16 @@ public void ValidationForTextBoxFunctionality() {
 }
 
 @Test (priority =5)
-public void ValidationForCheckBoxComponents() {
+public void ValidationForCheckBoxComponents() throws InterruptedException {
 	elements = new demoQA_POM_Elements(driver);
 	elements.CheckBoxComponents("Check Box");
 }
+
+@Test (priority =6)
+public void ValidationForRadioButton() {
+	elements = new demoQA_POM_Elements(driver);
+	elements.RadioButtonComponents("Radio Button");
+	elements.RadioButtonFunctionality();
+}
+
 }

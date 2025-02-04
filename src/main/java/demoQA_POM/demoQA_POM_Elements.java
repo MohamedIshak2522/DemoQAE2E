@@ -69,6 +69,23 @@ public class demoQA_POM_Elements extends demoQA_base{
 	List<WebElement> Folderandfilestitles;
 	@FindBy (xpath="//div[@id='result']")
 	WebElement resulttable;
+//Radio Button
+	@FindBy (xpath="//h1[contains(text(),'Radio Button')]")
+	WebElement Radiobuttonheader;
+	@FindBy (xpath="//div[contains(text(),'Do you like the site?')]")
+	WebElement Feedbackquestion;
+	@FindBy (xpath="//div[@class='custom-control custom-radio custom-control-inline']/input")
+	List<WebElement> Enabledbuttons;
+	@FindBy (xpath="//div[@class='custom-control custom-radio custom-control-inline']/label")
+	List<WebElement> Enabledbtnsname;
+	@FindBy (xpath="//div[@class='custom-control disabled custom-radio custom-control-inline']/input")
+	List<WebElement> Disabledbuttons;
+	@FindBy (xpath="//div[@class='custom-control disabled custom-radio custom-control-inline']/label")
+	WebElement Disabledbtnsname;
+	@FindBy (xpath="//p[contains(text(),'You have selected ')]")
+	WebElement Resulttext;
+	@FindBy (xpath="//p[contains(text(),'You have selected ')]/span")
+	WebElement Selectedoption;
 	
 	
 
@@ -186,31 +203,74 @@ public class demoQA_POM_Elements extends demoQA_base{
 		Assert.assertEquals(actualresults, expectedresults);	
 	}
 	
-	public void CheckBoxComponents(String option) {
+	public void CheckBoxComponents(String option) throws InterruptedException {
 		ClickAnyElementoptions(option);
 //~~Validation			
 		Assert.assertTrue(Checkboxheader.isDisplayed());
 		
 		javaScriptiClick(Plustoexpand);
 		
-		for (int i=0; i<Toggles.size();i++) {
-
+		for (int i=0; i<Checkboxes.size();i++) {
 		String checkbox = Folderandfilestitles.get(i).getText();
+		System.out.println(checkbox);
 		if(checkbox.equals("Downloads") || checkbox.equals("Desktop") || checkbox.equals("Documents")) {
 				javaScriptiClick(Checkboxes.get(i));
 		}
-		
-		Assert.assertTrue(Toggles.get(i).isDisplayed());
+//~~Validation	
 		Assert.assertTrue(Checkboxes.get(i).isDisplayed(), "Checkbox not displayed");
 		Assert.assertTrue(Foldericons.get(i).isDisplayed());
 		
 		}
-			int Expectedcheckboxes = 17;
-			int Actualcheckboxes = Folderandfilestitles.size();
-			
+		int Expectedtoggles = 6;
+		int Actualtoggles = Toggles.size();
+		int Expectedcheckboxes = 17;
+		int Actualcheckboxes = Folderandfilestitles.size();
+		
+//~~Validation	
+			Assert.assertEquals(Actualtoggles, Expectedtoggles);
 			Assert.assertEquals(Actualcheckboxes, Expectedcheckboxes);
 			Assert.assertTrue(resulttable.isDisplayed());
+	}
+	
+	public void RadioButtonComponents(String option) {
+		ClickAnyElementoptions(option);
+//~~Validation		
+		Assert.assertTrue(Radiobuttonheader.isDisplayed());
+		Assert.assertTrue(Feedbackquestion.isDisplayed());
 		
+		for (int i=0; i<Enabledbuttons.size();i++) {
+//~~Validation	
+			Assert.assertTrue(Enabledbuttons.get(i).isEnabled());
+		}
+		
+		for (int i=0; i<Disabledbuttons.size();i++) {
+//~~Validation
+			Assert.assertFalse(Disabledbuttons.get(i).isEnabled());
+		}
+		
+		List<String> actualoption = StoringWebelementsInList(Enabledbtnsname);
+		List<String> expectedoption = new ArrayList<String>();
+		expectedoption.add("Yes");
+		expectedoption.add("Impressive");
+//~~Validation
+		Assert.assertEquals(actualoption, expectedoption);
+		Assert.assertEquals(Disabledbtnsname.getText(), "No");
+		
+	}
+	
+	public void RadioButtonFunctionality() {
+		for (int i=0;i<Enabledbuttons.size();i++) {
+			javaScriptiClick(Enabledbuttons.get(i));
+			
+			if(Enabledbuttons.get(i).isSelected()) {
+				String Activeoption = Enabledbtnsname.get(i).getText();			
+				String Resultoption = Selectedoption.getText();
+				
+				Assert.assertTrue(Resulttext.isDisplayed());
+				Assert.assertEquals(Activeoption, Resultoption);
+			}
+				
+		}
 	}
 
 }

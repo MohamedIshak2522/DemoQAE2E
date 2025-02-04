@@ -5,8 +5,8 @@
     <classes>
       <class name="demoQA_Testcases.test_ElementsFunction">
         <methods>
-          <include name="ValidationForTextBoxFunctionality"/>
           <include name="LaunchBrowserAndURL"/>
+          <include name="ValidationForRadioButton"/>
         </methods>
       </class> <!-- demoQA_Testcases.test_ElementsFunction -->
     </classes>
