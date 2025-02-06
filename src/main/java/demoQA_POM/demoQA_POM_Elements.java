@@ -2,15 +2,20 @@ package demoQA_POM;
 
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import demoQA_Base.demoQA_base;
@@ -86,6 +91,43 @@ public class demoQA_POM_Elements extends demoQA_base{
 	WebElement Resulttext;
 	@FindBy (xpath="//p[contains(text(),'You have selected ')]/span")
 	WebElement Selectedoption;
+//Web Table
+	@FindBy (xpath="//h1[contains(text(),'Web Tables')]")
+	WebElement WebTableheader;
+	@FindBy (id="addNewRecordButton")
+	WebElement WT_addbutton;
+	@FindBy (id="searchBox")
+	WebElement WT_searchbox;
+	@FindBy (xpath="//div[@class='rt-tr']/div/div[@class='rt-resizable-header-content']")
+	List<WebElement> WT_Tableheaders;
+	@FindBy (xpath="//div[@class='rt-tbody']/div")
+	List<WebElement> WT_totalrows;
+	@FindBy (xpath="//span[@class='-pageInfo']")
+	WebElement WT_pageinfo;
+	@FindBy (xpath="//select[@aria-label='rows per page']")
+	WebElement WT_rowcountdrpdwn;
+	@FindBy (xpath="//select[@aria-label='rows per page']/option")
+	List<WebElement> WT_rowcountoptions;
+	@FindBy (xpath="//button[contains(text(),'Previous')]")
+	WebElement WT_previosbtn;
+	@FindBy (xpath="//button[contains(text(),'Next')]")
+	WebElement WT_nextbtn;
+	@FindBy (xpath="//input[@id='firstName']")
+	WebElement wt_addfname;
+	@FindBy (xpath="//input[@id='lastName']")
+	WebElement wt_addlname;
+	@FindBy (xpath="//input[@id='userEmail']")
+	WebElement wt_addemailaddr;
+	@FindBy (xpath="//input[@id='age']")
+	WebElement wt_addage;
+	@FindBy (xpath="//input[@id='salary']")
+	WebElement wt_addsalary;
+	@FindBy (xpath="//input[@id='department']")
+	WebElement wt_adddept;
+	@FindBy (xpath="//button[contains(text(),'Submit')]")
+	WebElement wt_submit;
+	
+	
 	
 	
 
@@ -113,10 +155,26 @@ public class demoQA_POM_Elements extends demoQA_base{
 		for(int i=0;i<ElementsOptions.size();i++) {
 			String options = ElementsOptions.get(i).getText();
 			if(options.equalsIgnoreCase(ouroption)) {
-				ElementsOptions.get(i).click();
+				javaScriptiClick(ElementsOptions.get(i));
 			}
 		}
-	}	
+	}
+
+// We use this method to read specific row values in web table
+	public List<String> ReadWebTableRows(List<String> actualrowvalue, String fname) {
+		for (int i=1;i<=WT_totalrows.size();i++) {
+			List<WebElement> values =  driver.findElements(By.xpath("(//div[@class='rt-tbody']/div/div)["+i+"]/div"));
+			String fnamevalue = values.get(0).getText();
+			if(fnamevalue.equalsIgnoreCase(fname)) {
+				for (int j=0;j<(values.size())-1;j++) {
+					String actualvalue = values.get(j).getText();
+					actualrowvalue.add(actualvalue);					
+				}
+				break;
+			}
+		}
+		return actualrowvalue;
+	}
 
 
 //((((((((((((((((((((Main methods)))))))))))))))))))))))))
@@ -163,17 +221,16 @@ public class demoQA_POM_Elements extends demoQA_base{
 //~~Validation
 		Assert.assertEquals(ActualOptions, ExpectedOptions);
 	}
+	
+//*************Text Box Methods
 
 	public void TextBoxComponents(String option) {
 		ClickAnyElementoptions(option);
 		
 		List<String> ActualOptions = StoringWebelementsInList(Fieldsname);
 		
-		List<String> ExpectedOptions = new ArrayList<String>();
-		ExpectedOptions.add("Full Name");
-		ExpectedOptions.add("Email");
-		ExpectedOptions.add("Current Address");
-		ExpectedOptions.add("Permanent Address");
+		List<String> ExpectedOptions = new ArrayList<String>(Arrays.asList("Full Name","Email","Current Address","Permanent Address"));
+
 		
 //~~Validation
 		Assert.assertEquals(ActualOptions, ExpectedOptions);
@@ -203,6 +260,8 @@ public class demoQA_POM_Elements extends demoQA_base{
 		Assert.assertEquals(actualresults, expectedresults);	
 	}
 	
+//*************Check Box Methods
+	
 	public void CheckBoxComponents(String option) throws InterruptedException {
 		ClickAnyElementoptions(option);
 //~~Validation			
@@ -212,7 +271,7 @@ public class demoQA_POM_Elements extends demoQA_base{
 		
 		for (int i=0; i<Checkboxes.size();i++) {
 		String checkbox = Folderandfilestitles.get(i).getText();
-		System.out.println(checkbox);
+
 		if(checkbox.equals("Downloads") || checkbox.equals("Desktop") || checkbox.equals("Documents")) {
 				javaScriptiClick(Checkboxes.get(i));
 		}
@@ -231,6 +290,8 @@ public class demoQA_POM_Elements extends demoQA_base{
 			Assert.assertEquals(Actualcheckboxes, Expectedcheckboxes);
 			Assert.assertTrue(resulttable.isDisplayed());
 	}
+	
+//*************Radio Button Methods
 	
 	public void RadioButtonComponents(String option) {
 		ClickAnyElementoptions(option);
@@ -265,12 +326,101 @@ public class demoQA_POM_Elements extends demoQA_base{
 			if(Enabledbuttons.get(i).isSelected()) {
 				String Activeoption = Enabledbtnsname.get(i).getText();			
 				String Resultoption = Selectedoption.getText();
-				
+//~~Validation
 				Assert.assertTrue(Resulttext.isDisplayed());
 				Assert.assertEquals(Activeoption, Resultoption);
 			}
 				
 		}
+	}
+//*************Web Table Methods
+	
+	public void WebTableComponents(String option) {
+		ClickAnyElementoptions(option);
+//~~Validation
+		Assert.assertTrue(WebTableheader.isDisplayed());
+		Assert.assertTrue(WT_addbutton.isEnabled());
+		Assert.assertTrue(WT_searchbox.isDisplayed());
+		Assert.assertTrue(WT_pageinfo.isDisplayed());
+		Assert.assertTrue(WT_previosbtn.isDisplayed());
+		Assert.assertTrue(WT_nextbtn.isDisplayed());
+		Assert.assertTrue(WT_rowcountdrpdwn.isDisplayed());
+		
+		List<String> Actualtableheaders = StoringWebelementsInList(WT_Tableheaders);
+		List<String> Expectedtableheaders = new ArrayList<String>(Arrays.asList("First Name","Last Name","Age","Email","Salary","Department","Action"));
+
+//~~Validation
+		Assert.assertEquals(Actualtableheaders, Expectedtableheaders);
+		
+	}
+	
+	public void RowsCountValidation() throws InterruptedException {
+		Select select = new Select(WT_rowcountdrpdwn);
+		for (WebElement numofrow : WT_rowcountoptions) {
+			explicitWaituntilVisibility(numofrow, 20);
+			String Rowoption = numofrow.getText();
+			select.selectByVisibleText(Rowoption);
+			
+			String selectedrows = Rowoption.replaceAll("[^0-9]", "");
+			int selectedcount = Integer.parseInt(selectedrows);
+			int totalrowsintable = WT_totalrows.size();
+//~~Validation	
+			Assert.assertEquals(selectedcount, totalrowsintable);
+		}
+	}
+	
+	public void AddingNewRecordValidation(String fname, String Lname, String Email, String age, String Salary, String department) throws InterruptedException {
+		javaScriptiClick(WT_addbutton);
+		
+		wt_addfname.sendKeys(fname);
+		wt_addlname.sendKeys(Lname);
+		wt_addemailaddr.sendKeys(Email);
+		wt_addage.sendKeys(age);
+		wt_addsalary.sendKeys(Salary);
+		wt_adddept.sendKeys(department);
+		javaScriptiClick(wt_submit);
+		
+		List<String> actualrow = new ArrayList<String>();
+		List<String> expectedrowvalue = new ArrayList<String>(Arrays.asList(fname, Lname, age, Email, Salary, department));
+
+		List<String> actualrowvalue= ReadWebTableRows(actualrow, fname);
+
+//~~Validation	
+		Assert.assertEquals(actualrowvalue, expectedrowvalue);
+	}
+	
+	public void EditRecordValidation(String fname, String Lname, String Email, String age, String Salary, String department) {
+		
+		List<String> actualrow = new ArrayList<String>();
+		List<String> expectedrowvalue = new ArrayList<String>(Arrays.asList(fname, Lname, age, Email, Salary, department));
+		
+		for (int i=1;i<=WT_totalrows.size();i++) {
+			List<WebElement> values =  driver.findElements(By.xpath("(//div[@class='rt-tbody']/div/div)["+i+"]/div"));
+			String fnamevalue = values.get(0).getText();
+			if(fnamevalue.equalsIgnoreCase("TE")) {
+				
+				WebElement editicon = driver.findElement(By.xpath("(//div[@class='rt-tbody']/div/div)["+i+"]/div/div/span[@title='Edit']"));
+				explicitWaituntilClickable(editicon, 20);
+				
+				Assert.assertTrue(editicon.isDisplayed());
+				javaScriptiClick(editicon);
+				
+				explicitWaituntilClickable(wt_submit, 20);
+					
+				SendKeys(wt_addfname, fname);
+				SendKeys(wt_addlname, Lname);
+				SendKeys(wt_addemailaddr, Email);
+				SendKeys(wt_addage, age);
+				SendKeys(wt_addsalary, Salary);
+				SendKeys(wt_adddept, department);
+				javaScriptiClick(wt_submit);
+			}
+		}
+				
+				List <String> actualrowvalue = ReadWebTableRows(actualrow, fname);
+//~~Validation	
+				Assert.assertEquals(actualrowvalue, expectedrowvalue);
+		
 	}
 
 }

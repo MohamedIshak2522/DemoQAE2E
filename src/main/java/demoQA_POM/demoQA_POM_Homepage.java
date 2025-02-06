@@ -78,7 +78,7 @@ public class demoQA_POM_Homepage extends demoQA_base{
 	
 	public void SelectSingleCard(String cart) {
 		int totalcartsize = Titleofeachcard.size();
-		System.out.println(totalcartsize);
+
 		for(int i=0; i<= totalcartsize ; i++) {
 			
 			String singleCard = Titleofeachcard.get(i).getText();

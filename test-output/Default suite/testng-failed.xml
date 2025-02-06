@@ -6,7 +6,7 @@
       <class name="demoQA_Testcases.test_ElementsFunction">
         <methods>
           <include name="LaunchBrowserAndURL"/>
-          <include name="ValidationForRadioButton"/>
+          <include name="ValidationForWebTable"/>
         </methods>
       </class> <!-- demoQA_Testcases.test_ElementsFunction -->
     </classes>

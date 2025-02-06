@@ -7,6 +7,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -86,6 +87,13 @@ public class demoQA_base {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 	    js.executeScript("arguments[0].click();", element);
 	}
+	
+//--> SenKeys
+	public void SendKeys(WebElement element, String input) {
+		element.clear();
+		element.sendKeys(input);
+	}
+	
 
 //--->Windows Handle
 	public void windowhandle(String mainWindowHandle) {

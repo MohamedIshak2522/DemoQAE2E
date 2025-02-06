@@ -69,4 +69,13 @@ public void ValidationForRadioButton() {
 	elements.RadioButtonFunctionality();
 }
 
+@Test (priority=7)
+public void ValidationForWebTable() throws InterruptedException {
+	elements = new demoQA_POM_Elements(driver);
+	elements.WebTableComponents("Web Tables");
+	elements.RowsCountValidation();
+	elements.AddingNewRecordValidation("TE","ST","te@test.com","25","20000","QA");
+	elements.EditRecordValidation("TE1","ST1","te1@test.com","26","10000","QC");
+}
+
 }
