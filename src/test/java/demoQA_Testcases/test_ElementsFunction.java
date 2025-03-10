@@ -76,6 +76,16 @@ public void ValidationForWebTable() throws InterruptedException {
 	elements.RowsCountValidation();
 	elements.AddingNewRecordValidation("TE","ST","te@test.com","25","20000","QA");
 	elements.EditRecordValidation("TE1","ST1","te1@test.com","26","10000","QC");
+	elements.DeleteRecordValidation("TE1");
+}
+
+@Test (priority=8)
+public void ValidationForButtons () throws InterruptedException {
+	elements = new demoQA_POM_Elements(driver);
+	elements.ButtonComponents("Buttons");
+	elements.DoubleClickFunctionality();
+	elements.RightClickFunctionality();
+	elements.ClickMeFunctionality();
 }
 
 }

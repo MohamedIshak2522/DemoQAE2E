@@ -1,5 +1,6 @@
 package demoQA_Base;
 
+import java.awt.Point;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,12 +9,14 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -71,7 +74,7 @@ public class demoQA_base {
 		driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
 	}
 	
-//--->Explicit Wait
+//--->Explicit Waits
 	public void explicitWaituntilVisibility(WebElement element, int waitseconds) {
 		WebDriverWait wait = new WebDriverWait(driver, waitseconds);
 		wait.until(ExpectedConditions.visibilityOf(element));
@@ -81,6 +84,7 @@ public class demoQA_base {
 		WebDriverWait wait = new WebDriverWait(driver, waitseconds);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
+	
 	
 //---> JavaScript Click
 	public void javaScriptiClick(WebElement element) {
@@ -93,7 +97,23 @@ public class demoQA_base {
 		element.clear();
 		element.sendKeys(input);
 	}
-	
+//---> Double click
+	public void doubleclickwithActionclass(WebElement element, WebElement moveele) throws InterruptedException {
+		Actions action = new Actions(driver);
+		action.moveToElement(moveele).build().perform();;
+		Thread.sleep(1000);
+		action.doubleClick(element).perform();
+	}
+//---> Right Click
+	public void rightclickwithActionclass(WebElement element, WebElement moveele) throws InterruptedException {
+		Actions action = new Actions(driver);
+//		org.openqa.selenium.Point location =  element.getLocation();
+//		action.moveByOffset(location.getX(), location.getY()).perform();
+		
+		action.moveToElement(moveele).build().perform();
+		Thread.sleep(1000);
+		action.contextClick(element).perform();
+	}
 
 //--->Windows Handle
 	public void windowhandle(String mainWindowHandle) {

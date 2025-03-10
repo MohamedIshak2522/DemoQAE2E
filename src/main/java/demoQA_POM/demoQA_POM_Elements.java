@@ -1,15 +1,18 @@
 package demoQA_POM;
 
+import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -17,6 +20,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import demoQA_Base.demoQA_base;
 
@@ -126,9 +131,25 @@ public class demoQA_POM_Elements extends demoQA_base{
 	WebElement wt_adddept;
 	@FindBy (xpath="//button[contains(text(),'Submit')]")
 	WebElement wt_submit;
-	
-	
-	
+//Buttons
+	@FindBy (xpath="//h1[contains(text(),'Buttons')]")
+	WebElement button_header;
+	@FindBy (xpath= "//button[contains(text(),'Double Click Me')]")
+	WebElement button_doubleclick;
+	@FindBy (xpath= "//button[contains(text(),'Right Click Me')]")
+	WebElement button_rightclick;
+	@FindBy (xpath= "(//button[contains(text(),'Click Me')])[3]")
+	WebElement button_click;
+	@FindBy (id="doubleClickMessage")
+	WebElement button_doubleclickmessage;
+	@FindBy (id="rightClickMessage")
+	WebElement button_rightclickmessage;
+	@FindBy (id="dynamicClickMessage")
+	WebElement button_clickmessage;
+	@FindBy (id="ad_iframe")
+	WebElement iframe1;
+	@FindBy (xpath="(//button[normalize-space()='Click Me']/parent::div/parent::div/following-sibling::div)[1]")
+	WebElement Adareatomove;
 	
 
 
@@ -389,10 +410,10 @@ public class demoQA_POM_Elements extends demoQA_base{
 		Assert.assertEquals(actualrowvalue, expectedrowvalue);
 	}
 	
-	public void EditRecordValidation(String fname, String Lname, String Email, String age, String Salary, String department) {
+	public void EditRecordValidation(String Editfname, String Lname, String Email, String age, String Salary, String department) {
 		
 		List<String> actualrow = new ArrayList<String>();
-		List<String> expectedrowvalue = new ArrayList<String>(Arrays.asList(fname, Lname, age, Email, Salary, department));
+		List<String> expectedrowvalue = new ArrayList<String>(Arrays.asList(Editfname, Lname, age, Email, Salary, department));
 		
 		for (int i=1;i<=WT_totalrows.size();i++) {
 			List<WebElement> values =  driver.findElements(By.xpath("(//div[@class='rt-tbody']/div/div)["+i+"]/div"));
@@ -407,7 +428,7 @@ public class demoQA_POM_Elements extends demoQA_base{
 				
 				explicitWaituntilClickable(wt_submit, 20);
 					
-				SendKeys(wt_addfname, fname);
+				SendKeys(wt_addfname, Editfname);
 				SendKeys(wt_addlname, Lname);
 				SendKeys(wt_addemailaddr, Email);
 				SendKeys(wt_addage, age);
@@ -417,11 +438,87 @@ public class demoQA_POM_Elements extends demoQA_base{
 			}
 		}
 				
-				List <String> actualrowvalue = ReadWebTableRows(actualrow, fname);
+				List <String> actualrowvalue = ReadWebTableRows(actualrow, Editfname);
 //~~Validation	
 				Assert.assertEquals(actualrowvalue, expectedrowvalue);
 		
 	}
-
-}
+	
+	public void DeleteRecordValidation(String deleterow) {
+		
+		for (int i=1;i<=WT_totalrows.size();i++) {
+			List<WebElement> values =  driver.findElements(By.xpath("(//div[@class='rt-tbody']/div/div)["+i+"]/div"));
+			String fnamevaluebefore = values.get(0).getText();
+			
+			if(fnamevaluebefore.equalsIgnoreCase(deleterow)) {
+				
+				WebElement deleteicon = driver.findElement(By.xpath("(//div[@class='rt-tbody']/div/div)["+i+"]/div/div/span[@title='Delete']"));
+				explicitWaituntilClickable(deleteicon, 20);
+//~~Validation
+				Assert.assertTrue(deleteicon.isDisplayed());
+				javaScriptiClick(deleteicon);
+				
+				WebElement fnameafter =  driver.findElement(By.xpath("((//div[@class='rt-tbody']/div/div)["+i+"]/div)[1]"));
+				
+				explicitWaituntilVisibility(fnameafter, 20);
+				String fnamevalueafter = fnameafter.getText();
+//~~Validation
+				Assert.assertTrue(!fnamevalueafter.equals(fnamevaluebefore));			
+			
+	}
+		}
+	}
+	
+	public void ButtonComponents(String option) {
+		ClickAnyElementoptions(option);
+		
+		explicitWaituntilClickable(button_click, 10);
+//~~Validation
+		Assert.assertTrue(button_header.isDisplayed());
+		Assert.assertTrue(button_doubleclick.isEnabled());
+		Assert.assertTrue(button_rightclick.isEnabled());
+		Assert.assertTrue(button_click.isEnabled());
+	}
+	
+	public void DoubleClickFunctionality() throws InterruptedException {
+//		explicitWaituntilClickable(button_doubleclick, 10);
+		Thread.sleep(3000);
+		doubleclickwithActionclass(button_doubleclick, button_click);
+		explicitWaituntilVisibility(button_doubleclickmessage, 10);
+		Assert.assertTrue(button_doubleclickmessage.isDisplayed());
+		
+//		if(button_doubleclick.isEnabled()) {
+//			explicitWaituntilClickable(button_doubleclick, 10);
+//			doubleclickwithActionclass(button_doubleclick);
+//			explicitWaituntilVisibility(button_doubleclickmessage, 10);
+//			Assert.assertTrue(button_doubleclickmessage.isDisplayed());
+//			
+//		}
+//			else {
+//				explicitWaituntilVisibility(iframe1, 20);
+//				driver.switchTo().frame(iframe1);
+//				driver.findElement(By.id("dismiss-button")).click();
+//				driver.switchTo().defaultContent();
+//				System.out.println("Check Check");
+//			}
+		
+		
+	}
+	
+	public void RightClickFunctionality() throws InterruptedException {
+		Thread.sleep(3000);
+//		explicitWaituntilClickable(button_rightclick, 10);
+		rightclickwithActionclass(button_rightclick, Adareatomove);
+		explicitWaituntilVisibility(button_rightclickmessage, 10);
+		Assert.assertTrue(button_rightclickmessage.isDisplayed());
+	}
+	
+	public void ClickMeFunctionality() {
+		explicitWaituntilClickable(button_click, 10);
+		javaScriptiClick(button_click);
+		explicitWaituntilVisibility(button_clickmessage, 10);
+		Assert.assertTrue(button_clickmessage.isDisplayed());
+	}
+	
+	}
 

@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>F:\temp\mishak\23\testng-eclipse-1003707321\testng-customsuite.xml</span>
+                    <span>F:\temp\mishak\15\testng-eclipse--1273701915\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">7 methods,   7 passed</span>
+                    <span class="method-stats">8 methods,   8 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -104,6 +104,11 @@
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Default_suite" title="demoQA_Testcases.test_ElementsFunction" class="method navigator-link" hash-for-method="ValidatationForNavigationToElements">ValidatationForNavigationToElements</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="demoQA_Testcases.test_ElementsFunction" class="method navigator-link" hash-for-method="ValidationForButtons">ValidationForButtons</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -163,6 +168,13 @@
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
+                  <a name="ValidationForButtons">
+                  </a> <!-- ValidationForButtons -->
+                  <span class="method-name">ValidationForButtons</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
                   <a name="ValidationForCheckBoxComponents">
                   </a> <!-- ValidationForCheckBoxComponents -->
                   <span class="method-name">ValidationForCheckBoxComponents</span>
@@ -208,7 +220,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">F:\temp\mishak\23\testng-eclipse-1003707321\testng-customsuite.xml</span>
+            <span class="header-content">F:\temp\mishak\15\testng-eclipse--1273701915\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -257,40 +269,44 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(7);
+data.addRows(8);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'ValidationForWebTable')
 data.setCell(0, 2, 'demoQA_Testcases.test_ElementsFunction')
-data.setCell(0, 3, 7603);
+data.setCell(0, 3, 11332);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'ValidatationForNavigationToElements')
+data.setCell(1, 1, 'ValidationForButtons')
 data.setCell(1, 2, 'demoQA_Testcases.test_ElementsFunction')
-data.setCell(1, 3, 2424);
+data.setCell(1, 3, 9180);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'ValidationForCheckBoxComponents')
+data.setCell(2, 1, 'ValidatationForNavigationToElements')
 data.setCell(2, 2, 'demoQA_Testcases.test_ElementsFunction')
-data.setCell(2, 3, 1813);
+data.setCell(2, 3, 2574);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'ValidationForRadioButton')
+data.setCell(3, 1, 'ValidationForCheckBoxComponents')
 data.setCell(3, 2, 'demoQA_Testcases.test_ElementsFunction')
-data.setCell(3, 3, 711);
+data.setCell(3, 3, 1827);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'ValidationForTextBoxComponents')
+data.setCell(4, 1, 'ValidationForRadioButton')
 data.setCell(4, 2, 'demoQA_Testcases.test_ElementsFunction')
-data.setCell(4, 3, 551);
+data.setCell(4, 3, 673);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'ValidationForTextBoxFunctionality')
+data.setCell(5, 1, 'ValidationForTextBoxComponents')
 data.setCell(5, 2, 'demoQA_Testcases.test_ElementsFunction')
-data.setCell(5, 3, 441);
+data.setCell(5, 3, 529);
 data.setCell(6, 0, 6)
-data.setCell(6, 1, 'ValidationForElementComponentOptions')
+data.setCell(6, 1, 'ValidationForTextBoxFunctionality')
 data.setCell(6, 2, 'demoQA_Testcases.test_ElementsFunction')
-data.setCell(6, 3, 299);
+data.setCell(6, 3, 407);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'ValidationForElementComponentOptions')
+data.setCell(7, 2, 'demoQA_Testcases.test_ElementsFunction')
+data.setCell(7, 3, 284);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 13 seconds</span>
+              <span class="suite-total-time">Total running time: 26 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -323,31 +339,35 @@ return data;
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">ValidatationForNavigationToElements</span>
-                <span class="method-start">5800 ms</span>
+                <span class="method-start">4950 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ValidationForElementComponentOptions</span>
-                <span class="method-start">8229 ms</span>
+                <span class="method-start">7530 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ValidationForTextBoxComponents</span>
-                <span class="method-start">8530 ms</span>
+                <span class="method-start">7816 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ValidationForTextBoxFunctionality</span>
-                <span class="method-start">9083 ms</span>
+                <span class="method-start">8347 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ValidationForCheckBoxComponents</span>
-                <span class="method-start">9526 ms</span>
+                <span class="method-start">8756 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ValidationForRadioButton</span>
-                <span class="method-start">11340 ms</span>
+                <span class="method-start">10585 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ValidationForWebTable</span>
-                <span class="method-start">12053 ms</span>
+                <span class="method-start">11260 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">ValidationForButtons</span>
+                <span class="method-start">22594 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

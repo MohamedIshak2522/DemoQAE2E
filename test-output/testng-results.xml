@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
+<testng-results ignored="0" total="8" passed="8" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-02-06T11:11:15 EST" name="Default suite" finished-at="2025-02-06T11:11:34 EST" duration-ms="19686">
+  <suite started-at="2025-03-10T06:48:35 EDT" name="Default suite" finished-at="2025-03-10T06:49:07 EDT" duration-ms="31800">
     <groups>
     </groups>
-    <test started-at="2025-02-06T11:11:15 EST" name="Default test" finished-at="2025-02-06T11:11:34 EST" duration-ms="19686">
+    <test started-at="2025-03-10T06:48:35 EDT" name="Default test" finished-at="2025-03-10T06:49:07 EDT" duration-ms="31800">
       <class name="demoQA_Testcases.test_ElementsFunction">
-        <test-method is-config="true" signature="LaunchBrowserAndURL()[pri:0, instance:demoQA_Testcases.test_ElementsFunction@712625fd]" started-at="2025-02-06T11:11:15 EST" name="LaunchBrowserAndURL" finished-at="2025-02-06T11:11:21 EST" duration-ms="5789" status="PASS">
+        <test-method is-config="true" signature="LaunchBrowserAndURL()[pri:0, instance:demoQA_Testcases.test_ElementsFunction@1c5920df]" started-at="2025-03-10T06:48:35 EDT" name="LaunchBrowserAndURL" finished-at="2025-03-10T06:48:40 EDT" duration-ms="4940" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LaunchBrowserAndURL -->
-        <test-method signature="ValidatationForNavigationToElements()[pri:1, instance:demoQA_Testcases.test_ElementsFunction@712625fd]" started-at="2025-02-06T11:11:21 EST" name="ValidatationForNavigationToElements" finished-at="2025-02-06T11:11:23 EST" duration-ms="2424" status="PASS">
+        <test-method signature="ValidatationForNavigationToElements()[pri:1, instance:demoQA_Testcases.test_ElementsFunction@1c5920df]" started-at="2025-03-10T06:48:40 EDT" name="ValidatationForNavigationToElements" finished-at="2025-03-10T06:48:43 EDT" duration-ms="2574" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidatationForNavigationToElements -->
-        <test-method signature="ValidationForElementComponentOptions()[pri:2, instance:demoQA_Testcases.test_ElementsFunction@712625fd]" started-at="2025-02-06T11:11:23 EST" name="ValidationForElementComponentOptions" finished-at="2025-02-06T11:11:23 EST" duration-ms="299" status="PASS">
+        <test-method signature="ValidationForElementComponentOptions()[pri:2, instance:demoQA_Testcases.test_ElementsFunction@1c5920df]" started-at="2025-03-10T06:48:43 EDT" name="ValidationForElementComponentOptions" finished-at="2025-03-10T06:48:43 EDT" duration-ms="284" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidationForElementComponentOptions -->
-        <test-method signature="ValidationForTextBoxComponents()[pri:3, instance:demoQA_Testcases.test_ElementsFunction@712625fd]" started-at="2025-02-06T11:11:23 EST" name="ValidationForTextBoxComponents" finished-at="2025-02-06T11:11:24 EST" duration-ms="551" status="PASS">
+        <test-method signature="ValidationForTextBoxComponents()[pri:3, instance:demoQA_Testcases.test_ElementsFunction@1c5920df]" started-at="2025-03-10T06:48:43 EDT" name="ValidationForTextBoxComponents" finished-at="2025-03-10T06:48:44 EDT" duration-ms="529" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidationForTextBoxComponents -->
-        <test-method signature="ValidationForTextBoxFunctionality()[pri:4, instance:demoQA_Testcases.test_ElementsFunction@712625fd]" started-at="2025-02-06T11:11:24 EST" name="ValidationForTextBoxFunctionality" finished-at="2025-02-06T11:11:24 EST" duration-ms="441" status="PASS">
+        <test-method signature="ValidationForTextBoxFunctionality()[pri:4, instance:demoQA_Testcases.test_ElementsFunction@1c5920df]" started-at="2025-03-10T06:48:44 EDT" name="ValidationForTextBoxFunctionality" finished-at="2025-03-10T06:48:44 EDT" duration-ms="407" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidationForTextBoxFunctionality -->
-        <test-method signature="ValidationForCheckBoxComponents()[pri:5, instance:demoQA_Testcases.test_ElementsFunction@712625fd]" started-at="2025-02-06T11:11:24 EST" name="ValidationForCheckBoxComponents" finished-at="2025-02-06T11:11:26 EST" duration-ms="1813" status="PASS">
+        <test-method signature="ValidationForCheckBoxComponents()[pri:5, instance:demoQA_Testcases.test_ElementsFunction@1c5920df]" started-at="2025-03-10T06:48:44 EDT" name="ValidationForCheckBoxComponents" finished-at="2025-03-10T06:48:46 EDT" duration-ms="1827" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidationForCheckBoxComponents -->
-        <test-method signature="ValidationForRadioButton()[pri:6, instance:demoQA_Testcases.test_ElementsFunction@712625fd]" started-at="2025-02-06T11:11:26 EST" name="ValidationForRadioButton" finished-at="2025-02-06T11:11:27 EST" duration-ms="711" status="PASS">
+        <test-method signature="ValidationForRadioButton()[pri:6, instance:demoQA_Testcases.test_ElementsFunction@1c5920df]" started-at="2025-03-10T06:48:46 EDT" name="ValidationForRadioButton" finished-at="2025-03-10T06:48:47 EDT" duration-ms="673" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidationForRadioButton -->
-        <test-method signature="ValidationForWebTable()[pri:7, instance:demoQA_Testcases.test_ElementsFunction@712625fd]" started-at="2025-02-06T11:11:27 EST" name="ValidationForWebTable" finished-at="2025-02-06T11:11:34 EST" duration-ms="7603" status="PASS">
+        <test-method signature="ValidationForWebTable()[pri:7, instance:demoQA_Testcases.test_ElementsFunction@1c5920df]" started-at="2025-03-10T06:48:47 EDT" name="ValidationForWebTable" finished-at="2025-03-10T06:48:58 EDT" duration-ms="11332" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidationForWebTable -->
+        <test-method signature="ValidationForButtons()[pri:8, instance:demoQA_Testcases.test_ElementsFunction@1c5920df]" started-at="2025-03-10T06:48:58 EDT" name="ValidationForButtons" finished-at="2025-03-10T06:49:07 EDT" duration-ms="9180" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ValidationForButtons -->
       </class> <!-- demoQA_Testcases.test_ElementsFunction -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
